@@ -21,7 +21,7 @@ impl Celsius {
 
 impl std::fmt::Display for Celsius {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}", self.val)
+        write!(f, "{}°C", self.val)
     }
 }
 
@@ -40,21 +40,21 @@ impl Fahrenheit {
 
 impl std::fmt::Display for Fahrenheit {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}", self.val)
+        write!(f, "{}°F", self.val)
     }
 }
 
 fn parse_input(input: &str) -> Temperature {
-    if input.ends_with('f') {
+    if input.ends_with('f') || input.ends_with('F') {
         Temperature::Fahrenheit(Fahrenheit {
             val: parse_num(input),
         })
-    } else if input.ends_with('c') {
+    } else if input.ends_with('c') || input.ends_with('C') {
         Temperature::Celsius(Celsius {
             val: parse_num(input),
         })
     } else {
-        Temperature::Err("Input invalid. Must end with 'c' or 'f'.".to_string())
+        Temperature::Err("Input invalid. Must end with 'cC' or 'fF'.".to_string())
     }
 }
 
