@@ -61,10 +61,7 @@ fn parse_input(input: &str) -> Temperature {
 fn parse_num(input: &str) -> u32 {
     let temperature: String = input.chars().take(input.len() - 1).collect();
 
-    match temperature.parse() {
-        Ok(num) => num,
-        Err(_) => 0,
-    }
+    temperature.parse().unwrap_or(0)
 }
 
 fn main() {
