@@ -6,13 +6,21 @@ enum Temperature {
     Err(String),
 }
 
+trait C {
+    fn to_fahrenheit(&self) -> Fahrenheit;
+}
+
+trait F {
+    fn to_celsius(&self) -> Celsius;
+}
+
 #[derive(Debug)]
 struct Celsius {
     val: u32,
 }
 
-impl Celsius {
-    pub fn to_fahrenheit(&self) -> Fahrenheit {
+impl C for Celsius {
+    fn to_fahrenheit(&self) -> Fahrenheit {
         Fahrenheit {
             val: self.val * 9 / 5 + 32,
         }
@@ -30,8 +38,8 @@ struct Fahrenheit {
     val: u32,
 }
 
-impl Fahrenheit {
-    pub fn to_celsius(&self) -> Celsius {
+impl F for Fahrenheit {
+    fn to_celsius(&self) -> Celsius {
         Celsius {
             val: (self.val - 32) * 5 / 9,
         }
